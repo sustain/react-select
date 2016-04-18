@@ -339,6 +339,7 @@ var Select = _react2['default'].createClass({
 	propTypes: {
 		addLabelText: _react2['default'].PropTypes.string, // placeholder displayed when you want to add a label on a multi-value input
 		allowCreate: _react2['default'].PropTypes.bool, // whether to allow creation of new entries
+		arrowRenderer: _react2['default'].PropTypes.func, // renders a custom arrow button
 		autoBlur: _react2['default'].PropTypes.bool,
 		autofocus: _react2['default'].PropTypes.bool, // autofocus the component on mount
 		autosize: _react2['default'].PropTypes.bool, // whether to enable autosizing or not
@@ -995,6 +996,9 @@ var Select = _react2['default'].createClass({
 	},
 
 	renderArrow: function renderArrow() {
+		if (this.props.arrowRenderer) {
+			return this.props.arrowRenderer(this.handleMouseDownOnArrow);
+		}
 		return _react2['default'].createElement(
 			'span',
 			{ className: 'Select-arrow-zone', onMouseDown: this.handleMouseDownOnArrow },
