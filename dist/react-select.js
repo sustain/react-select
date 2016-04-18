@@ -374,6 +374,7 @@ var Select = _react2['default'].createClass({
 		onClose: _react2['default'].PropTypes.func, // fires when the menu is closed
 		onFocus: _react2['default'].PropTypes.func, // onFocus handler: function (event) {}
 		onInputChange: _react2['default'].PropTypes.func, // onInputChange handler: function (inputValue) {}
+		onMouseDownOnArrow: _react2['default'].PropTypes.func, // overwrite the default action that fires when the arrow is clicked
 		onMenuScrollToBottom: _react2['default'].PropTypes.func, // fires when the menu is scrolled to the bottom; can be used to paginate options
 		onOpen: _react2['default'].PropTypes.func, // fires when the menu is opened
 		onValueClick: _react2['default'].PropTypes.func, // onClick handler for value labels: function (value, event) {}
@@ -579,6 +580,10 @@ var Select = _react2['default'].createClass({
 	},
 
 	handleMouseDownOnArrow: function handleMouseDownOnArrow(event) {
+		if (this.props.onMouseDownOnArrow) {
+			this.props.onMouseDownOnArrow(event);
+			return;
+		}
 		// if the event was triggered by a mousedown and not the primary
 		// button, or if the component is disabled, ignore it.
 		if (this.props.disabled || event.type === 'mousedown' && event.button !== 0) {
