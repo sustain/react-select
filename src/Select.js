@@ -36,6 +36,7 @@ const Select = React.createClass({
 		backspaceRemoves: React.PropTypes.bool,     // whether backspace removes an item if there is no text input
 		className: React.PropTypes.string,          // className for the outer element
 		clearAllText: stringOrNode,                 // title for the "clear" control when multi: true
+		clearValueCallback: React.PropTypes.func,   // called after the clearValue action
 		clearValueText: stringOrNode,               // title for the "clear" control
 		clearable: React.PropTypes.bool,            // should it be possible to reset value
 		delimiter: React.PropTypes.string,          // delimiter to use to join multiple values for the hidden field value
@@ -507,6 +508,9 @@ const Select = React.createClass({
 			isOpen: false,
 			inputValue: '',
 		}, this.focus);
+		if (this.props.clearValueCallback) {
+			this.props.clearValueCallback(event);
+		}
 	},
 
 	focusOption (option) {
