@@ -29,6 +29,7 @@ const Select = React.createClass({
 	propTypes: {
 		addLabelText: React.PropTypes.string,       // placeholder displayed when you want to add a label on a multi-value input
 		allowCreate: React.PropTypes.bool,          // whether to allow creation of new entries
+		arrowRenderer: React.PropTypes.func,        // renders a custom arrow button
 		autoBlur: React.PropTypes.bool,
 		autofocus: React.PropTypes.bool,            // autofocus the component on mount
 		autosize: React.PropTypes.bool,							// whether to enable autosizing or not
@@ -665,6 +666,9 @@ const Select = React.createClass({
 	},
 
 	renderArrow () {
+		if (this.props.arrowRenderer) {
+			return this.props.arrowRenderer(this.handleMouseDownOnArrow);
+		}
 		return (
 			<span className="Select-arrow-zone" onMouseDown={this.handleMouseDownOnArrow}>
 				<span className="Select-arrow" onMouseDown={this.handleMouseDownOnArrow} />
