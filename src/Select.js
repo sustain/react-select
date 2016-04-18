@@ -65,6 +65,7 @@ const Select = React.createClass({
 		onClose: React.PropTypes.func,              // fires when the menu is closed
 		onFocus: React.PropTypes.func,              // onFocus handler: function (event) {}
 		onInputChange: React.PropTypes.func,        // onInputChange handler: function (inputValue) {}
+		onMouseDownOnArrow: React.PropTypes.func,   // overwrite the default action that fires when the arrow is clicked
 		onMenuScrollToBottom: React.PropTypes.func, // fires when the menu is scrolled to the bottom; can be used to paginate options
 		onOpen: React.PropTypes.func,               // fires when the menu is opened
 		onValueClick: React.PropTypes.func,         // onClick handler for value labels: function (value, event) {}
@@ -270,6 +271,10 @@ const Select = React.createClass({
 	},
 
 	handleMouseDownOnArrow (event) {
+		if (this.props.onMouseDownOnArrow) {
+			this.props.onMouseDownOnArrow(event);
+			return;
+		}
 		// if the event was triggered by a mousedown and not the primary
 		// button, or if the component is disabled, ignore it.
 		if (this.props.disabled || (event.type === 'mousedown' && event.button !== 0)) {
