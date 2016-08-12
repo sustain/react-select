@@ -38,8 +38,8 @@
     "unexpected-sinon": "^9.0.4"
   },
   "peerDependencies": {
-    "react": "^0.14 || ^15.0.0-rc || ^15.0.0",
-    "react-dom": "^0.14 || ^15.0.0-rc || ^15.0.0"
+    "react": "^0.14 || ^15.0.0-rc || ^15.2.0",
+    "react-dom": "^0.14 || ^15.0.0-rc || ^15.2.0"
   },
   "browserify-shim": {
     "classnames": "global:classNames",
